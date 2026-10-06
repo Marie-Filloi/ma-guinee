@@ -2,6 +2,7 @@ const CACHE_NAME = "maguinee-cache-v1";
 const ASSETS = [
   "./",
   "./index.html",
+  "./privacy.html",
   "./style.css",
   "./app.js",
   "./questions.js",
