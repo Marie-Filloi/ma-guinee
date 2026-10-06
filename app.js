@@ -254,7 +254,8 @@
     saveScore(state.catKey, percent);
 
     let badge, title, message;
-    if (percent >= 90) { badge = "🏆"; title = "Excellent !"; message = "Tu connais vraiment bien la Guinée !"; }
+    if (percent >= 100) { badge = "🇬🇳"; title = "Félicitations !"; message = "La Guinée est fière de toi !"; }
+    else if (percent >= 90) { badge = "🏆"; title = "Excellent !"; message = "Tu connais vraiment bien la Guinée !"; }
     else if (percent >= 70) { badge = "🥇"; title = "Très bien !"; message = "Belle maîtrise de la culture guinéenne."; }
     else if (percent >= 50) { badge = "🥈"; title = "Pas mal !"; message = "Continue à apprendre sur ton pays."; }
     else { badge = "🥉"; title = "Continue tes efforts !"; message = "Rejoue pour améliorer ton score."; }
