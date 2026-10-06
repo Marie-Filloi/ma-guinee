@@ -1,5 +1,7 @@
 # MA GUINÉE 🇬🇳
 
+Créé par **Marie Antoinette Filloi**.
+
 Jeu de culture générale sur la République de Guinée — histoire, géographie, institutions, culture, citoyenneté et actualité — destiné aux élèves, à la population, au gouvernement et à l'Assemblée Nationale.
 
 ## Jouer

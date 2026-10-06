@@ -230,6 +230,10 @@ html, body {
   color: var(--muted);
   font-size: 12px;
 }
+.home-footer .credit {
+  margin-top: 2px;
+  font-weight: 600;
+}
 
 /* ===== QUIZ ===== */
 .quiz-top {
