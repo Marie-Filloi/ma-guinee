@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.vercel.ma_guinee.twa",
+        "sha256_cert_fingerprints": ["CE:34:75:EB:38:A6:6D:3A:F0:D1:AC:27:A9:5F:88:96:B6:51:71:D0:0A:0B:46:5F:E5:7B:FC:79:FD:18:3A:8E"]
+      }
+    }]
