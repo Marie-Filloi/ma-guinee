@@ -1,0 +1,16 @@
+{
+  "name": "MA GUINÉE - Jeu de culture générale",
+  "short_name": "MA GUINÉE",
+  "description": "Jeu de culture générale sur la Guinée : histoire, géographie, institutions, culture et citoyenneté.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f5f0",
+  "theme_color": "#009460",
+  "lang": "fr",
+  "icons": [
+    { "src": "icons/icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

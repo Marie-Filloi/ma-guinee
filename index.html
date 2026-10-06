@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>MA GUINÉE — Jeu de culture générale</title>
+<meta name="description" content="Jeu de culture générale sur la Guinée : histoire, géographie, institutions, culture et citoyenneté." />
+<meta name="theme-color" content="#009460" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon.png" type="image/png" />
+<link rel="apple-touch-icon" href="icons/icon.png" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ===== ÉCRAN ACCUEIL ===== -->
+  <section id="screen-home" class="screen active">
+    <div class="flagbar" aria-hidden="true"></div>
+    <header class="home-header">
+      <div class="hero-pattern" aria-hidden="true"></div>
+      <div class="emblem-badge">
+        <img class="emblem-photo" src="icons/nimba.jpg" alt="Masque Nimba (D'mba), peuple Baga, symbole culturel de la Guinée" loading="eager" />
+      </div>
+      <p class="eyebrow">RÉPUBLIQUE DE GUINÉE</p>
+      <h1>MA GUINÉE</h1>
+      <p class="tagline">Le jeu de culture générale pour tous les Guinéens</p>
+    </header>
+
+    <div class="home-card">
+      <h2>Choisis une catégorie</h2>
+      <div id="category-grid" class="category-grid"></div>
+
+      <button id="btn-mixte" class="btn btn-primary btn-block">🔀 Mode Mixte (toutes catégories)</button>
+
+      <div class="options-row">
+        <label for="select-length">Nombre de questions</label>
+        <select id="select-length">
+          <option value="10">10 questions</option>
+          <option value="15" selected>15 questions</option>
+          <option value="20">20 questions</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="scoreboard" class="scoreboard"></div>
+
+    <footer class="home-footer">
+      <p>Fait avec 💚💛❤️ pour la Guinée</p>
+    </footer>
+  </section>
+
+  <!-- ===== ÉCRAN QUIZ ===== -->
+  <section id="screen-quiz" class="screen">
+    <div class="quiz-top">
+      <button id="btn-quit" class="btn-icon" aria-label="Quitter">✕</button>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+        <div id="progress-label" class="progress-label">Question 1/15</div>
+      </div>
+      <div id="timer" class="timer">20</div>
+    </div>
+
+    <div class="quiz-body">
+      <div id="quiz-category-tag" class="category-tag"></div>
+      <h2 id="question-text" class="question-text"></h2>
+      <div id="choices" class="choices"></div>
+      <div id="explain" class="explain hidden"></div>
+    </div>
+
+    <div class="quiz-bottom">
+      <div id="score-live" class="score-live">Score : 0</div>
+      <button id="btn-next" class="btn btn-primary" disabled>Suivant →</button>
+    </div>
+  </section>
+
+  <!-- ===== ÉCRAN RÉSULTATS ===== -->
+  <section id="screen-results" class="screen">
+    <div class="results-card">
+      <div id="result-badge" class="result-badge">🏆</div>
+      <h2 id="result-title">Bravo !</h2>
+      <p id="result-score" class="result-score">0 / 0</p>
+      <p id="result-message" class="result-message"></p>
+
+      <div id="review-list" class="review-list"></div>
+
+      <div class="results-actions">
+        <button id="btn-replay" class="btn btn-primary btn-block">🔁 Rejouer</button>
+        <button id="btn-home" class="btn btn-ghost btn-block">🏠 Accueil</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
