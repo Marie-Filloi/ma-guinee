@@ -181,12 +181,13 @@
     timerEl.classList.remove("low");
     state.timerId = setInterval(() => {
       state.timeLeft -= 1;
+      if (state.timeLeft <= 0) {
+        timerEl.textContent = "⏱";
+        clearInterval(state.timerId);
+        return;
+      }
       timerEl.textContent = state.timeLeft;
       if (state.timeLeft <= 5) timerEl.classList.add("low");
-      if (state.timeLeft <= 0) {
-        clearInterval(state.timerId);
-        selectAnswer(-1); // temps écoulé
-      }
     }, 1000);
   }
 
