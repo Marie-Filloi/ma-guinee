@@ -172,5 +172,24 @@ const QUESTIONS = {
       { q: "Le programme 'Simandou 2040', feuille de route nationale sur 15 ans lancée par le président Doumbouya, représente un investissement estimé à :", choices: ["Plus de 200 milliards de dollars", "10 millions de dollars", "5 milliards de francs guinéens", "1 milliard d'euros"], answer: 0, explain: "Il comprend 122 méga-projets et 36 réformes visant à transformer l'économie guinéenne." },
       { q: "En juin 2026, le président Doumbouya a annoncé la fin de :", choices: ["L'exportation d'or brut, au profit du raffinage local", "L'exportation de bauxite", "La pêche industrielle", "L'agriculture d'exportation"], answer: 0 }
     ]
+  },
+  "lois": {
+    label: "Lois & Codes",
+    icon: "⚖️",
+    color: "#1D3461",
+    items: [
+      { q: "Selon l'article 1 du Code de l'enfant guinéen (loi L/2008/011/AN), un « enfant » est défini comme :", choices: ["Tout être humain âgé de moins de 18 ans", "Tout être humain âgé de moins de 15 ans", "Tout être humain âgé de moins de 21 ans", "Tout élève du primaire"], answer: 0, explain: "Le Code de l'enfant a été adopté le 19 août 2008 par l'Assemblée Nationale." },
+      { q: "L'article 2 du Code de l'enfant guinéen garantit à chaque enfant :", choices: ["La jouissance de ses droits sans discrimination (race, sexe, religion...)", "Le droit de ne pas aller à l'école", "Le droit de travailler dès 5 ans", "Le droit de voter"], answer: 0 },
+      { q: "Selon l'article 4 du Code de l'enfant guinéen, un enfant a le droit de :", choices: ["Exprimer librement son opinion, selon son âge et sa maturité", "Décider seul de tout sans ses parents", "Refuser toute scolarité", "Gérer seul ses biens dès la naissance"], answer: 0 },
+      { q: "L'article 6 du Code de l'enfant guinéen privilégie, dans toute décision concernant un enfant :", choices: ["Le maintien de l'enfant dans son milieu familial", "La séparation systématique d'avec ses parents", "Le placement automatique en internat", "L'émancipation immédiate"], answer: 0, explain: "La séparation n'est envisagée que si l'autorité judiciaire juge que c'est nécessaire pour l'intérêt supérieur de l'enfant." },
+      { q: "Historiquement, l'article 280 du Code civil guinéen fixait l'âge minimum du mariage à :", choices: ["18 ans pour les hommes, 17 ans pour les femmes", "21 ans pour les deux sexes", "16 ans pour les deux sexes", "Aucun âge minimum"], answer: 0, explain: "Des dispenses pouvaient être accordées par décret présidentiel pour motifs graves ; les réformes récentes tendent vers 18 ans pour les deux sexes." },
+      { q: "En quelle année la Guinée a-t-elle ratifié la Convention internationale relative aux droits de l'enfant ?", choices: ["1990", "1958", "2008", "2021"], answer: 0 },
+      { q: "En quelle année la Guinée a-t-elle ratifié la Charte africaine des droits et du bien-être de l'enfant ?", choices: ["1999", "1958", "1990", "2019"], answer: 0 },
+      { q: "Selon l'article 21 du Code de la route guinéen (loi L/2018/023/AN), l'excès de vitesse est puni de :", choices: ["10 jours à 3 mois de prison et/ou une amende de 3e classe", "La confiscation définitive du véhicule", "Un simple avertissement oral", "La peine de mort"], answer: 0, explain: "Cette loi, adoptée le 20 juin 2018, est le texte de référence du Code de la route guinéen." },
+      { q: "Selon le Code de la route guinéen, le port de la ceinture de sécurité est obligatoire pour :", choices: ["Le conducteur et tous les passagers", "Le conducteur uniquement", "Personne, c'est optionnel", "Seulement sur autoroute"], answer: 0 },
+      { q: "Selon le Code de la route guinéen, le port du casque homologué est obligatoire pour :", choices: ["Le conducteur et le passager d'une moto", "Seulement le conducteur de moto", "Seulement en ville", "Aucune obligation en Guinée"], answer: 0 },
+      { q: "Le Code de la route guinéen interdit explicitement au volant :", choices: ["L'usage d'un téléphone portable tenu en main", "L'écoute de la radio", "Le port de lunettes de soleil", "La climatisation"], answer: 0 },
+      { q: "Pour circuler légalement en Guinée, un conducteur doit pouvoir présenter :", choices: ["Permis de conduire, carte grise et attestation d'assurance", "Seulement sa carte d'identité", "Rien, aucun document n'est requis", "Un passeport uniquement"], answer: 0 }
+    ]
   }
 };
