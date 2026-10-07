@@ -188,6 +188,10 @@ html, body {
   border: 2px solid #e2e2e2;
   margin-top: 10px;
 }
+.btn-share {
+  background: #25D366;
+  color: #fff;
+}
 
 #btn-mixte { margin-bottom: 14px; }
 

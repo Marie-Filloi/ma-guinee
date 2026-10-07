@@ -275,8 +275,27 @@
       reviewList.appendChild(div);
     });
 
+    state.lastPercent = percent;
+    state.lastTotalPts = total * 10;
     showScreen("results");
   }
+
+  el("btn-share").addEventListener("click", () => {
+    const catLabel = state.catKey === "mixte" ? "Mode Mixte" : QUESTIONS[state.catKey].label;
+    const text =
+      "J'ai fait " + state.lastPercent + "% (" + state.score + "/" + state.lastTotalPts + " pts) sur MA GUINÉE 🇬🇳 en " +
+      catLabel + " ! Teste tes connaissances sur la Guinée : https://ma-guinee.vercel.app";
+
+    if (navigator.share) {
+      navigator.share({ text }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Score copié ! Tu peux le coller dans WhatsApp ou ailleurs.");
+      }).catch(() => {
+        window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+      });
+    }
+  });
 
   el("btn-replay").addEventListener("click", () => startGame(state.catKey));
   el("btn-home").addEventListener("click", () => {
