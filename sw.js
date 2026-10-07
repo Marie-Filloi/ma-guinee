@@ -8,7 +8,7 @@ const ASSETS = [
   "./questions.js",
   "./manifest.json",
   "./icons/icon.png",
-  "./icons/nimba.jpg",
+  "./icons/logo-full.jpg",
 ];
 
 self.addEventListener("install", (event) => {
