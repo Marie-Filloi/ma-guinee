@@ -3,6 +3,7 @@
   "use strict";
 
   const QUESTION_TIME = 20; // secondes par question
+  const LAST_CHANCE_TIME = 10; // secondes supplementaires accordees une fois
   const STORAGE_KEY = "maguinee_scores_v1";
 
   const el = (id) => document.getElementById(id);
@@ -89,6 +90,7 @@
     answered: false,
     timerId: null,
     timeLeft: QUESTION_TIME,
+    lastChanceUsed: false,
     review: [],
   };
 
@@ -126,6 +128,7 @@
       answered: false,
       timerId: null,
       timeLeft: QUESTION_TIME,
+      lastChanceUsed: false,
       review: [],
     };
     showScreen("quiz");
@@ -142,12 +145,15 @@
   const explainEl = el("explain");
   const scoreLiveEl = el("score-live");
   const btnNext = el("btn-next");
+  const lastChanceEl = el("last-chance");
 
   function renderQuestion() {
     const total = state.questions.length;
     const q = state.questions[state.index];
     state.answered = false;
     state.timeLeft = QUESTION_TIME;
+    state.lastChanceUsed = false;
+    lastChanceEl.classList.add("hidden");
 
     progressFill.style.width = Math.round((state.index / total) * 100) + "%";
     progressLabel.textContent = "Question " + (state.index + 1) + "/" + total;
@@ -182,8 +188,18 @@
     state.timerId = setInterval(() => {
       state.timeLeft -= 1;
       if (state.timeLeft <= 0) {
-        timerEl.textContent = "⏱";
+        if (!state.lastChanceUsed) {
+          // Dernière chance : on accorde du temps supplémentaire, une seule fois.
+          state.lastChanceUsed = true;
+          state.timeLeft = LAST_CHANCE_TIME;
+          lastChanceEl.classList.remove("hidden");
+          timerEl.textContent = state.timeLeft;
+          timerEl.classList.add("low");
+          return;
+        }
         clearInterval(state.timerId);
+        timerEl.textContent = "⏱";
+        selectAnswer(-1);
         return;
       }
       timerEl.textContent = state.timeLeft;
@@ -195,6 +211,7 @@
     if (state.answered) return;
     state.answered = true;
     clearInterval(state.timerId);
+    lastChanceEl.classList.add("hidden");
 
     const q = state.questions[state.index];
     const buttons = choicesEl.querySelectorAll(".choice-btn");
