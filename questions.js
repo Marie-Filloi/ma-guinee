@@ -77,6 +77,8 @@ const QUESTIONS = {
       { q: "Qu'est-ce qu'un gouverneur de région en Guinée ?", choices: ["Un chef religieux", "Un représentant de l'État au niveau régional", "Un chef d'entreprise", "Un enseignant"], answer: 1, explain: "Il est nommé par le pouvoir central pour représenter l'État dans sa région." },
       { q: "Qui a présidé le Conseil National de la Transition (CNT), organe législatif créé après 2021 en remplacement de l'ancienne Assemblée Nationale ?", choices: ["Dansa Kourouma", "Bah Oury", "Alpha Condé", "Lansana Conté"], answer: 0, explain: "Le CNT a fait office de parlement de transition jusqu'à l'installation du nouveau Parlement élu en 2026." },
       { q: "En juillet 2026, la Guinée a installé son premier Parlement élu, combien d'années après le coup d'État de 2021 ?", choices: ["5 ans", "1 an", "10 ans", "20 ans"], answer: 0, explain: "Avant cela, le pouvoir législatif était exercé par le CNT, un organe nommé et non élu." },
+      { q: "Qui a été élu président de l'Assemblée Nationale le 17 juillet 2026 ?", choices: ["Dansa Kourouma", "Mamadi Doumbouya", "Bah Oury", "Alpha Condé"], answer: 0, explain: "Il a recueilli 129 voix sur 147 députés, après avoir déjà présidé le CNT durant la transition." },
+      { q: "Combien de députés siègent à l'Assemblée Nationale élue en 2026 ?", choices: ["147", "80", "200", "33"], answer: 0 },
       { q: "Pour la première fois depuis l'indépendance, l'Assemblée Nationale guinéenne doit disposer d'un siège construit spécialement pour elle, situé à :", choices: ["Koloma (commune de Ratoma)", "Kaloum", "Kankan", "Kindia"], answer: 0, explain: "En attendant la fin des travaux, le Parlement siège au Palais du Peuple, à Kaloum, comme depuis l'indépendance." }
     ]
   },
@@ -145,7 +147,7 @@ const QUESTIONS = {
     icon: "📰",
     color: "#C9641D",
     items: [
-      { q: "Le coup d'État qui a porté Mamadi Doumbouya au pouvoir a eu lieu le :", choices: ["5 septembre 2021", "2 octobre 1958", "28 décembre 2025", "15 mai 2010"], answer: 0, explain: "Ce coup d'État a renversé le président Alpha Condé, alors en fonction depuis 2010." },
+      { q: "Le coup d'État qui a porté Mamadi Doumbouya au pouvoir a eu lieu le :", choices: ["5 septembre 2021", "2 octobre 1958", "28 décembre 2025", "15 mai 2010"], answer: 0, explain: "Ce coup d'État a renversé le président Alpha Condé, alors en fonction depuis 2010. Mamadi Doumbouya sera ensuite élu président par le peuple en décembre 2025." },
       { q: "Mamadi Doumbouya a été élu président de la République lors de l'élection présidentielle du :", choices: ["28 décembre 2025", "2 octobre 1958", "15 mars 2021", "5 septembre 2021"], answer: 0, explain: "Soit quatre ans après le coup d'État de 2021." },
       { q: "Avec quel score Mamadi Doumbouya a-t-il été élu président en 2025 ?", choices: ["86,72 % des voix", "51 % des voix", "60 % des voix", "99 % des voix"], answer: 0, explain: "Il s'est imposé dès le premier tour, face à huit autres candidats." },
       { q: "En septembre 2026, pourquoi France 24 a-t-elle présenté des excuses officielles au président Mamadi Doumbouya ?", choices: ["Un journaliste l'avait qualifié de « président putschiste »", "Elle avait annulé un match de football", "Elle avait mal traduit l'hymne national", "Elle avait publié une fausse carte du pays"], answer: 0, explain: "La chaîne avait été suspendue par la Haute Autorité de la Communication avant de présenter ses excuses." },
