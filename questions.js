@@ -189,7 +189,14 @@ const QUESTIONS = {
       { q: "Selon le Code de la route guinéen, le port de la ceinture de sécurité est obligatoire pour :", choices: ["Le conducteur et tous les passagers", "Le conducteur uniquement", "Personne, c'est optionnel", "Seulement sur autoroute"], answer: 0 },
       { q: "Selon le Code de la route guinéen, le port du casque homologué est obligatoire pour :", choices: ["Le conducteur et le passager d'une moto", "Seulement le conducteur de moto", "Seulement en ville", "Aucune obligation en Guinée"], answer: 0 },
       { q: "Le Code de la route guinéen interdit explicitement au volant :", choices: ["L'usage d'un téléphone portable tenu en main", "L'écoute de la radio", "Le port de lunettes de soleil", "La climatisation"], answer: 0 },
-      { q: "Pour circuler légalement en Guinée, un conducteur doit pouvoir présenter :", choices: ["Permis de conduire, carte grise et attestation d'assurance", "Seulement sa carte d'identité", "Rien, aucun document n'est requis", "Un passeport uniquement"], answer: 0 }
+      { q: "Pour circuler légalement en Guinée, un conducteur doit pouvoir présenter :", choices: ["Permis de conduire, carte grise et attestation d'assurance", "Seulement sa carte d'identité", "Rien, aucun document n'est requis", "Un passeport uniquement"], answer: 0 },
+      { q: "Selon le Code du travail guinéen (loi L/2014/072/CNT), l'âge minimum légal pour travailler est de :", choices: ["16 ans", "12 ans", "21 ans", "10 ans"], answer: 0, explain: "Les apprentis peuvent toutefois être engagés dès 14 ans." },
+      { q: "Selon le Code du travail guinéen, le travail de nuit est interdit pour les travailleurs de moins de :", choices: ["18 ans", "25 ans", "14 ans", "21 ans"], answer: 0 },
+      { q: "Le salaire minimum interprofessionnel garanti (SMIG) en Guinée est fixé par :", choices: ["Décret", "Chaque entreprise librement", "Les syndicats uniquement", "Aucun texte ne le fixe"], answer: 0, explain: "Le SMIG garantit un revenu plancher à tous les travailleurs, quel que soit leur secteur." },
+      { q: "La nouvelle Constitution guinéenne, promulguée le 26 septembre 2025, comporte combien d'articles ?", choices: ["205", "50", "1000", "33"], answer: 0, explain: "Elle est structurée en 11 titres." },
+      { q: "Selon la Constitution de 2025, le Président de la République guinéenne est élu pour un mandat de :", choices: ["7 ans, renouvelable une seule fois", "5 ans, renouvelable indéfiniment", "10 ans, non renouvelable", "4 ans, renouvelable deux fois"], answer: 0 },
+      { q: "Le nouveau Code pénal guinéen, entré en vigueur le 26 octobre 2016, a aboli :", choices: ["La peine de mort, remplacée par la réclusion criminelle à perpétuité", "Le droit de grève", "Le mariage civil", "Le droit à un avocat"], answer: 0, explain: "L'ancien code de 1998 prévoyait encore la peine de mort pour certains crimes, comme la trahison." },
+      { q: "Selon l'article 192 du Code pénal guinéen, la corruption passive est punie de :", choices: ["1 à 5 ans de prison et d'une amende", "Une simple amende administrative", "Aucune sanction", "La peine de mort"], answer: 0 }
     ]
   }
 };
