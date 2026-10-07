@@ -112,7 +112,10 @@ const QUESTIONS = {
       { q: "Où se trouve le Musée National de Guinée ?", choices: ["À Conakry", "À Kankan", "À Labé", "À Kindia"], answer: 0, explain: "Il conserve notamment des masques et statues traditionnels de différentes ethnies du pays." },
       { q: "Bembeya Jazz National, orchestre guinéen emblématique, est connu pour :", choices: ["Sa musique moderne inspirée des traditions mandingues", "Le football", "La politique étrangère", "L'agriculture"], answer: 0, explain: "Le groupe fut célèbre dans toute l'Afrique de l'Ouest dans les années 1960-1970." },
       { q: "Les Amazones de Guinée sont connues comme :", choices: ["Un orchestre entièrement féminin", "Une équipe de football féminin", "Une association de commerçantes", "Un groupe de danse masculin"], answer: 0, explain: "Elles étaient à l'origine un orchestre de la police nationale, exclusivement féminin." },
-      { q: "Sekouba Bambino Diabaté est un artiste guinéen célèbre pour :", choices: ["Le chant", "La sculpture", "La politique", "L'architecture"], answer: 0, explain: "Il a notamment été membre du groupe Bembeya Jazz National avant une carrière solo." }
+      { q: "Sekouba Bambino Diabaté est un artiste guinéen célèbre pour :", choices: ["Le chant", "La sculpture", "La politique", "L'architecture"], answer: 0, explain: "Il a notamment été membre du groupe Bembeya Jazz National avant une carrière solo." },
+      { q: "Quel est le titre du roman le plus connu de l'écrivain guinéen Camara Laye, publié en 1953 ?", choices: ["L'Enfant noir", "Une si longue lettre", "Le Petit Prince", "Les Soleils des indépendances"], answer: 0, explain: "Il raconte son enfance à Kouroussa, en Guinée, et a reçu le prix Charles Veillon en 1954." },
+      { q: "Après 'L'Enfant noir', quel autre roman marquant Camara Laye publie-t-il en 1954 ?", choices: ["Le Regard du roi", "Une vie de boy", "Xala", "Le Devoir de violence"], answer: 0 },
+      { q: "Quel écrivain guinéen a reçu le prix Renaudot en 2008 pour son roman 'Le Roi de Kahel' ?", choices: ["Tierno Monénembo", "Camara Laye", "Mongo Beti", "Ahmadou Kourouma"], answer: 0, explain: "Il a aussi reçu le Grand Prix de la francophonie de l'Académie française en 2017 pour l'ensemble de son œuvre." }
     ]
   },
   "citoyennete": {
