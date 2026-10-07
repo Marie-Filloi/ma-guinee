@@ -184,8 +184,6 @@
       if (state.timeLeft <= 0) {
         timerEl.textContent = "⏱";
         clearInterval(state.timerId);
-        selectAnswer(-1);
-        state.autoNextId = setTimeout(goToNext, 2500);
         return;
       }
       timerEl.textContent = state.timeLeft;
@@ -229,7 +227,6 @@
   }
 
   function goToNext() {
-    clearTimeout(state.autoNextId);
     state.index += 1;
     if (state.index >= state.questions.length) {
       finishGame();
@@ -242,7 +239,6 @@
 
   el("btn-quit").addEventListener("click", () => {
     clearInterval(state.timerId);
-    clearTimeout(state.autoNextId);
     showScreen("home");
     renderHome();
   });
