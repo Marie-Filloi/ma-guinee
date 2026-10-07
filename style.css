@@ -227,6 +227,18 @@ html, body {
 }
 .score-row strong { color: var(--green); }
 
+.helpline {
+  margin-top: 14px;
+  background: rgba(206,17,38,0.08);
+  border: 1px solid rgba(206,17,38,0.25);
+  color: var(--red);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
 .home-footer {
   margin-top: auto;
   text-align: center;
