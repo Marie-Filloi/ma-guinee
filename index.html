@@ -25,10 +25,6 @@
        style="display:block;text-align:center;text-decoration:none;margin:0 0 16px;background:#1a120b;color:#f2c335;border:2px solid #f2c335;font-weight:800;">
       🗣️ Nouveau ! Tongo Saxan — le jeu de groupe
     </a>
-        <button id="btn-install" type="button" class="btn btn-block"
-       style="display:block;margin:0 0 16px;background:#009460;color:#fff;font-weight:800;border:0;">
-      📲 Installer l'appli sur mon téléphone
-    </button>
 
     <div class="home-card">
       <h2>Choisis une catégorie</h2>
@@ -101,71 +97,5 @@
 
 <script src="questions.js"></script>
 <script src="app.js"></script>
-<!-- ===== FENÊTRE : INSTALLER L'APPLI ===== -->
-<div id="install-box" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center;padding:20px;">
-  <div style="background:#fff;color:#222;max-width:420px;width:100%;border-radius:18px;padding:22px;font-size:17px;line-height:1.45;">
-    <h3 style="margin:0 0 12px;color:#009460;">📲 Installer MA GUINÉE</h3>
-    <div id="install-steps"></div>
-    <button id="install-close" type="button" style="margin-top:14px;width:100%;padding:12px;border:0;border-radius:12px;background:#009460;color:#fff;font-size:17px;font-weight:700;">J'ai compris</button>
-  </div>
-</div>
-
-<script>
-(function () {
-  var btn = document.getElementById("btn-install");
-  var box = document.getElementById("install-box");
-  var steps = document.getElementById("install-steps");
-  var deferredPrompt = null;
-
-  // Déjà installée ? On cache le bouton.
-  var installed = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-  if (installed) { btn.style.display = "none"; return; }
-
-  // Android / ordinateur : Chrome propose l'installation automatique.
-  window.addEventListener("beforeinstallprompt", function (e) {
-    e.preventDefault();
-    deferredPrompt = e;
-  });
-  window.addEventListener("appinstalled", function () { btn.style.display = "none"; });
-
-  var ua = navigator.userAgent;
-  var isIOS = /iphone|ipad|ipod/i.test(ua);
-  var isAndroid = /android/i.test(ua);
-
-  btn.addEventListener("click", function () {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt = null;
-      return;
-    }
-    if (isIOS) {
-      steps.innerHTML =
-        "<p><b>Sur iPhone :</b></p><ol>" +
-        "<li>Ouvre ce site dans <b>Safari</b>.</li>" +
-        "<li>Touche le bouton <b>Partager</b> (le carré avec une flèche ⬆️).</li>" +
-        "<li>Choisis <b>Sur l'écran d'accueil</b>.</li>" +
-        "<li>Touche <b>Ajouter</b>. L'icône Nimba apparaît ✅</li></ol>";
-    } else if (isAndroid) {
-      steps.innerHTML =
-        "<p><b>Sur Android :</b></p><ol>" +
-        "<li>Ouvre ce site dans <b>Chrome</b>.</li>" +
-        "<li>Touche les <b>3 points ⋮</b> en haut à droite.</li>" +
-        "<li>Choisis <b>Installer l'application</b> ou <b>Ajouter à l'écran d'accueil</b>.</li>" +
-        "<li>Confirme. L'icône Nimba apparaît ✅</li></ol>";
-    } else {
-      steps.innerHTML =
-        "<p><b>Sur ordinateur :</b></p><ol>" +
-        "<li>Ouvre ce site dans <b>Chrome</b> ou <b>Edge</b>.</li>" +
-        "<li>Clique sur l'icône <b>Installer</b> à droite de la barre d'adresse.</li>" +
-        "<li>Confirme. L'appli s'ouvre dans sa propre fenêtre ✅</li></ol>" +
-        "<p>Sur téléphone, ouvre ce site et touche à nouveau ce bouton.</p>";
-    }
-    box.style.display = "flex";
-  });
-
-  document.getElementById("install-close").addEventListener("click", function () { box.style.display = "none"; });
-  box.addEventListener("click", function (e) { if (e.target === box) box.style.display = "none"; });
-})();
-</script>
 </body>
 </html>
