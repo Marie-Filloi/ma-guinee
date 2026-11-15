@@ -1,4 +1,4 @@
-const CACHE_NAME = "maguinee-cache-v2";
+const CACHE_NAME = "maguinee-cache-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -29,15 +29,21 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Réseau en priorité (pour toujours voir les mises à jour), cache en secours hors-ligne.
+// Cache d'abord (rapide, marche sans internet), puis mise à jour en arrière-plan.
 self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") return;
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-        return response;
-      })
-      .catch(() => caches.match(event.request))
+    caches.match(event.request, { ignoreSearch: true }).then((cached) => {
+      const network = fetch(event.request)
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return response;
+        })
+        .catch(() => cached);
+      return cached || network;
+    })
   );
 });
