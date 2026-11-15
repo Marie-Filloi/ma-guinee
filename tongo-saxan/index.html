@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tongo Saxan Secondes</title>
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" href="../icons/icon.png" type="image/png">
+<meta name="theme-color" content="#009460">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#17100a; --wood:#2b1d12; --wood2:#3a2817; --line:#5a3f24;
+  --gold:#f2c335; --gold2:#c9971c; --red:#ce1126; --yellow:#fcd116; --green:#009460;
+  --text:#fbf3e4; --muted:#c8b79c;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:'Baloo 2',system-ui,sans-serif;color:var(--text);
+  background:
+    radial-gradient(circle at 20% 0%,rgba(242,195,53,.10),transparent 45%),
+    radial-gradient(circle at 100% 100%,rgba(0,148,96,.12),transparent 45%),
+    var(--bg);
+  min-height:100%;
+}
+.flag{display:flex;height:6px}.flag i{flex:1}.flag i:nth-child(1){background:var(--red)}.flag i:nth-child(2){background:var(--yellow)}.flag i:nth-child(3){background:var(--green)}
+.app{max-width:480px;margin:0 auto;padding:18px 18px 40px;min-height:calc(100vh - 6px);display:flex;flex-direction:column}
+.screen{display:none;flex-direction:column;gap:16px;flex:1;animation:fade .35s ease}
+.screen.on{display:flex}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* motif */
+.motif{height:14px;background:
+  linear-gradient(135deg,var(--gold2) 25%,transparent 25%) -7px 0/14px 14px,
+  linear-gradient(225deg,var(--gold2) 25%,transparent 25%) -7px 0/14px 14px;opacity:.55;border-radius:3px}
+
+h1{font-size:54px;line-height:.9;font-weight:800;letter-spacing:2px;color:var(--gold);text-align:center;text-shadow:0 3px 0 #6b4a12}
+h2{font-size:26px;font-weight:800;color:var(--gold);text-align:center}
+.sub{text-align:center;color:var(--muted);font-size:17px}
+.tag{display:inline-block;margin:0 auto;padding:2px 12px;border:1px dashed var(--gold2);border-radius:20px;color:var(--gold);font-size:13px}
+
+.btn{border:0;border-radius:16px;padding:15px 18px;font:inherit;font-size:20px;font-weight:800;cursor:pointer;
+  background:var(--gold);color:#2a1a05;box-shadow:0 5px 0 var(--gold2);transition:transform .08s}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--gold2)}
+.btn.sec{background:var(--wood2);color:var(--text);box-shadow:0 5px 0 #24180d;border:1px solid var(--line)}
+.btn.green{background:var(--green);color:#fff;box-shadow:0 5px 0 #005a3a}
+.btn.small{font-size:16px;padding:10px 14px}
+
+.panel{background:var(--wood);border:1px solid var(--line);border-radius:18px;padding:16px}
+.label{font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--wood2);color:var(--text);border-radius:12px;padding:8px 14px;font:inherit;font-size:16px;font-weight:700;cursor:pointer}
+.chip.on{background:var(--gold);color:#2a1a05;border-color:var(--gold)}
+.teamin{display:flex;gap:8px;align-items:center;margin-top:8px}
+.teamin span{width:14px;height:14px;border-radius:50%;flex:none}
+.teamin input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--text);font:inherit;font-size:17px}
+
+/* mask */
+.mask{width:180px;border-radius:50%;margin:0 auto;display:block;filter:drop-shadow(0 8px 16px rgba(0,0,0,.5))}
+.mask.sm{width:96px}
+
+/* scores */
+.scores{display:flex;flex-direction:column;gap:10px}
+.srow{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+.srow b{font-size:17px}.srow em{font-style:normal;font-weight:800;color:var(--gold)}
+.bar{grid-column:1/-1;height:10px;background:var(--bg);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:6px;transition:width .5s}
+.srow.cur b::after{content:" ◀";color:var(--gold)}
+
+/* card */
+.top{display:flex;justify-content:space-between;align-items:center}
+.who{font-size:20px;font-weight:800}
+.timer{position:relative;width:86px;height:86px}
+.timer svg{transform:rotate(-90deg)}
+.timer .num{position:absolute;inset:0;display:grid;place-items:center;font-size:32px;font-weight:800}
+.timer.hot .num{color:var(--red);animation:pulse .5s infinite alternate}
+@keyframes pulse{to{transform:scale(1.15)}}
+.card{background:linear-gradient(160deg,#fff7e6,#f3e0bb);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:9px;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);border:4px solid var(--gold);position:relative}
+.card::before{content:"";position:absolute;inset:6px;border:1.5px dashed rgba(139,94,20,.35);border-radius:15px;pointer-events:none}
+.word{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #e5cf9f;border-radius:14px;padding:11px 12px;
+  color:#2a1a05;font:inherit;font-size:21px;font-weight:800;text-align:left;cursor:pointer;position:relative;z-index:1}
+.word .n{width:30px;height:30px;border-radius:50%;background:#2a1a05;color:var(--gold);display:grid;place-items:center;font-size:15px;flex:none}
+.word small{margin-left:auto;font-size:11px;font-weight:700;color:#8b6a2a;text-transform:uppercase;letter-spacing:.5px}
+.word.ok{background:var(--green);border-color:var(--green);color:#fff}
+.word.ok .n{background:#fff;color:var(--green)}
+.word.ok .n::before{content:"✓"}.word.ok .n span{display:none}
+.word.ok small{color:#d6ffe9}
+.hint{text-align:center;color:var(--muted);font-size:15px}
+.big{font-size:64px;font-weight:800;text-align:center;color:var(--gold);line-height:1}
+.rules li{margin:0 0 8px 20px;font-size:17px;line-height:1.35}
+.row{display:flex;gap:10px}.row .btn{flex:1}
+.spacer{flex:1}
+.howto{background:var(--wood2);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.howto div{display:flex;gap:10px;align-items:flex-start;font-size:16px;line-height:1.3}
+.howto div span{font-size:22px;flex:none;width:28px;text-align:center}
+.banner{background:var(--gold);color:#2a1a05;border-radius:14px;padding:10px 12px;text-align:center;font-weight:800;font-size:18px;line-height:1.2}
+.banner small{display:block;font-weight:600;font-size:14px}
+.help{position:fixed;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:2px solid var(--gold);background:var(--wood);color:var(--gold);font:inherit;font-size:22px;font-weight:800;cursor:pointer;z-index:5}
+.catdesc{margin-top:10px;font-size:15px;color:var(--muted)}
+.tuto{position:fixed;inset:0;background:rgba(10,6,3,.92);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}
+.tuto.on{display:flex}
+.tbox{max-width:420px;width:100%;background:var(--wood);border:2px solid var(--gold);border-radius:22px;padding:22px 20px;display:flex;flex-direction:column;gap:14px;text-align:center;animation:fade .3s}
+.tbox .ico{font-size:64px;line-height:1}
+.tbox h3{font-size:24px;color:var(--gold);font-weight:800}
+.tbox p{font-size:18px;line-height:1.35}
+.dots{display:flex;gap:6px;justify-content:center}.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--gold)}
+.confetti{position:fixed;top:-20px;width:10px;height:14px;z-index:9;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+      <linearGradient id="wd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6b4321"/><stop offset="1" stop-color="#2a170a"/></linearGradient>
+    </defs><symbol id="nimba" viewBox="0 0 200 250">
+    <!-- crête -->
+    <path d="M86 40 L92 26 L100 38 L108 22 L116 36 L125 22 L132 38 L141 28 L146 46" fill="none" stroke="#f2c335" stroke-width="4" stroke-linejoin="round"/>
+    <!-- tête de profil -->
+    <path d="M118 36 C150 36 170 62 166 98 C163 122 151 136 136 141 L134 156 L100 156 L98 147
+             C82 147 72 142 67 135 C63 129 59 126 53 128 C40 131 36 118 44 108
+             C54 96 66 86 69 72 C72 50 92 36 118 36 Z" fill="url(#wd)" stroke="#f2c335" stroke-width="3"/>
+    <!-- oeil -->
+    <path d="M80 80 Q90 73 99 80 Q90 86 80 80 Z" fill="#f2c335"/>
+    <!-- oreille -->
+    <path d="M140 86 q12 4 8 18 q-4 8 -12 4" fill="none" stroke="#f2c335" stroke-width="3"/>
+    <!-- scarifications -->
+    <g stroke="#f2c335" stroke-width="2.4" stroke-linecap="round" opacity=".9">
+      <path d="M108 52 l8 8 l8 -8 l8 8 l8 -8"/>
+      <path d="M112 118 l6 6 l6 -6 l6 6"/>
+      <path d="M78 100 l5 6"/><path d="M85 98 l5 6"/>
+    </g>
+    <!-- épaules -->
+    <path d="M58 166 Q60 156 76 156 L148 156 Q162 156 164 170 L166 198 Q112 212 56 198 Z" fill="url(#wd)" stroke="#f2c335" stroke-width="3"/>
+    <!-- seins -->
+    <path d="M74 200 Q74 228 90 228 Q104 228 104 203" fill="url(#wd)" stroke="#f2c335" stroke-width="3"/>
+    <path d="M118 203 Q118 228 133 228 Q148 228 148 200" fill="url(#wd)" stroke="#f2c335" stroke-width="3"/>
+    <circle cx="90" cy="221" r="3" fill="#f2c335"/><circle cx="133" cy="221" r="3" fill="#f2c335"/>
+    <g fill="#ce1126"><circle cx="86" cy="178" r="4"/></g><g fill="#fcd116"><circle cx="111" cy="182" r="4"/></g><g fill="#009460"><circle cx="136" cy="178" r="4"/></g>
+    <!-- pieds -->
+    <g fill="#2a170a" stroke="#f2c335" stroke-width="3"><rect x="64" y="226" width="10" height="20" rx="3"/><rect x="150" y="226" width="10" height="20" rx="3"/></g>
+  </symbol></svg>
+<div class="flag"><i></i><i></i><i></i></div>
+<button class="help" onclick="openTuto(false)" aria-label="Aide">?</button>
+<div class="tuto" id="tuto"><div class="tbox">
+  <div class="ico" id="tIco"></div><h3 id="tTitle"></h3><p id="tText"></p>
+  <div class="dots" id="tDots"></div>
+  <div class="row"><button class="btn sec small" id="tSkip" onclick="closeTuto()">Passer</button><button class="btn small" id="tNext" onclick="nextTuto()">Suivant →</button></div>
+</div></div>
+<div class="app">
+
+<!-- ACCUEIL -->
+<section class="screen on" id="home">
+  <div class="motif"></div>
+  <img class="mask" src="../icons/icon.png" alt="Logo Nimba">
+    <h1 style="font-size:44px">TONGO SAXAN<br><span style="font-size:32px">SECONDES</span></h1>
+  <p class="sub" style="margin-top:-10px;color:var(--gold)">« 30 secondes » en soussou</p>
+ 
+  <p class="sub">Fais deviner 5 mots en 30 secondes.<br>Guinée, Afrique, monde : tout le monde peut jouer !</p>
+  <div class="spacer"></div>
+  <button class="btn" onclick="go('setup')">▶ Jouer</button>
+  <button class="btn sec" onclick="go('rules')">📜 Les règles</button>
+  <a class="btn sec small" href="../index.html" style="text-align:center;text-decoration:none">← Retour à Ma Guinée</a>
+  <div class="motif"></div>
+</section>
+
+<!-- RÈGLES -->
+<section class="screen" id="rules">
+  <h2>Comment jouer ?</h2>
+  <div class="panel">
+    <ol class="rules">
+      <li>Formez 2 à 4 équipes.</li>
+      <li>À chaque tour, un joueur de l'équipe prend le téléphone et lance le chrono.</li>
+      <li>Il a <b>30 secondes</b> pour faire deviner les <b>5 mots</b> de la carte à son équipe.</li>
+      <li>Interdit de dire le mot, une partie du mot, ou de l'épeler !</li>
+      <li>Touchez un mot quand l'équipe le trouve ✓.</li>
+      <li>Chaque mot trouvé = 1 point. Puis c'est le tour de l'équipe suivante.</li>
+      <li>La première équipe qui atteint le score final gagne 🏆.</li>
+    </ol>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="go('setup')">J'ai compris, on joue !</button>
+  <button class="btn sec small" onclick="go('home')">← Retour</button>
+</section>
+
+<!-- RÉGLAGES -->
+<section class="screen" id="setup">
+  <h2>Préparer la partie</h2>
+  <div class="panel">
+    <div class="label">Nombre d'équipes</div>
+    <div class="chips" id="nbTeams"></div>
+    <div id="teamInputs"></div>
+  </div>
+  <div class="panel">
+    <div class="label">Thème des cartes</div>
+    <div class="chips" id="cats"></div>
+    <div class="catdesc" id="catDesc"></div>
+  </div>
+  <div class="panel">
+    <div class="label">Durée du chrono</div>
+    <div class="chips" id="durs"></div>
+  </div>
+  <div class="panel">
+    <div class="label">Score pour gagner</div>
+    <div class="chips" id="targets"></div>
+  </div>
+  <button class="btn" onclick="startGame()">C'est parti !</button>
+  <button class="btn sec small" onclick="go('home')">← Retour</button>
+</section>
+
+<!-- AVANT LE TOUR -->
+<section class="screen" id="ready">
+  <img class="mask sm" src="../icons/icon.png" alt="">
+  <p class="sub">C'est au tour de</p>
+  <h2 id="readyTeam" style="font-size:34px"></h2>
+  <div class="howto">
+    <div><span>📱</span><p><b>Un joueur</b> de cette équipe prend le téléphone. C'est lui qui <b>fait deviner</b>.</p></div>
+    <div><span>🙈</span><p>Ses coéquipiers <b>ne regardent pas</b> l'écran. Ce sont eux qui <b>devinent</b>.</p></div>
+    <div><span>🗣️</span><p>Il explique chaque mot <b>sans le dire</b> (gestes, phrases, exemples…).</p></div>
+    <div><span>⏱️</span><p>Il a <b id="readyDur">30</b> secondes pour faire trouver un maximum des 5 mots.</p></div>
+  </div>
+  <div class="panel scores" id="scoresReady"></div>
+  <div class="spacer"></div>
+  <button class="btn green" onclick="startTurn()">⏱ Lancer le chrono</button>
+  <button class="btn sec small" onclick="quitGame()">Quitter la partie</button>
+</section>
+
+<!-- CARTE -->
+<section class="screen" id="play">
+  <div class="top">
+    <div><div class="label" style="margin:0">Équipe</div><div class="who" id="playTeam"></div></div>
+    <div class="timer" id="timer">
+      <svg width="86" height="86"><circle cx="43" cy="43" r="37" fill="none" stroke="#3a2817" stroke-width="8"/>
+        <circle id="ring" cx="43" cy="43" r="37" fill="none" stroke="#f2c335" stroke-width="8" stroke-linecap="round" stroke-dasharray="232.5" stroke-dashoffset="0"/></svg>
+      <div class="num" id="timeNum">30</div>
+    </div>
+  </div>
+  <div class="banner">Fais deviner ces mots à ton équipe… sans les dire !<small>Quand ton équipe trouve un mot, touche-le ✓</small></div>
+  <div class="card" id="card"></div>
+  <div class="spacer"></div>
+  <button class="btn sec small" onclick="endTurn()">Terminer maintenant</button>
+</section>
+
+<!-- RÉSULTAT DU TOUR -->
+<section class="screen" id="result">
+  <h2>⏰ Temps écoulé !</h2>
+  <div class="big" id="resNum">0</div>
+  <p class="sub" id="resTxt"></p>
+  <div class="card" id="resCard"></div>
+  <p class="hint">Une erreur ? Touche un mot pour corriger.</p>
+  <div class="spacer"></div>
+  <button class="btn" onclick="validate()">Valider les points</button>
+</section>
+
+<!-- VICTOIRE -->
+<section class="screen" id="win">
+  <div class="motif"></div>
+  <img class="mask" src="../icons/icon.png" alt="">
+  <h2 style="font-size:20px;color:var(--muted)">Victoire de</h2>
+  <h1 id="winTeam" style="font-size:44px"></h1>
+  <div class="panel scores" id="scoresWin"></div>
+  <div class="spacer"></div>
+  <button class="btn" onclick="startGame()">🔁 Rejouer</button>
+  <button class="btn sec small" onclick="go('home')">Accueil</button>
+</section>
+
+</div>
+
+<script>
+/* ======== CARTES (mots) ======== */
+const POOLS = {
+  guinee: ["Conakry","Kankan","Labé","Nzérékoré","Kindia","Boké","Mamou","Faranah","Kissidougou","Siguiri","Dubréka","Macenta","Guéckédou","Fria",
+    "Fouta-Djallon","Mont Nimba","Îles de Loos","Île de Kassa","Fleuve Niger","Voile de la Mariée","Mont Loura","Kaloum","Ratoma","Marché Madina",
+    "Masque Nimba","Mory Kanté","Sékouba Bambino","Bembeya Jazz","Ballets Africains","Camara Laye","L'Enfant noir","Syli National","Naby Keïta",
+    "Serhou Guirassy","Pascal Feindouno","Horoya AC","Hafia FC","Fonio","Sauce arachide","Sauce feuille","Riz gras","Djembé","Kora","Balafon",
+    "Bauxite","Franc guinéen","2 octobre","Drapeau guinéen","Soussou","Peul","Malinké","Kissi","Taxi-moto","Mangue","Ananas",
+    "Grande mosquée de Conakry","Palais du Peuple","Stade du 28 Septembre","Jardin de Camayenne"],
+  afrique: ["Nil","Sahara","Kilimandjaro","Chutes Victoria","Pyramides","Lac Victoria","Nelson Mandela","Miriam Makeba","Fela Kuti","Youssou N'Dour",
+    "Salif Keita","Angélique Kidjo","Didier Drogba","Samuel Eto'o","Mohamed Salah","Sadio Mané","Wangari Maathai","Chinua Achebe","Lagos","Dakar",
+    "Abidjan","Bamako","Freetown","Monrovia","Le Caire","Nairobi","Addis-Abeba","Kinshasa","Le Cap","Johannesburg","Marrakech","Tombouctou",
+    "Île de Gorée","Lac Rose","Madagascar","Baobab","Lion","Éléphant","Girafe","Gorille","Zèbre","Hippopotame","Lémurien","Crocodile",
+    "Jollof","Thiéboudienne","Mafé","Couscous","Attiéké","Alloco","Pagne wax","Kente","Boubou","CAN","Union africaine","Swahili","Wolof",
+    "Zoulou","Tabaski","Griot","Safari"],
+  monde: ["Tour Eiffel","Statue de la Liberté","Grande Muraille","Taj Mahal","Machu Picchu","Colisée","Big Ben","Everest","Amazonie","Océan Pacifique",
+    "Paris","Londres","New York","Tokyo","Rio de Janeiro","Pékin","Dubaï","La Mecque","Lionel Messi","Cristiano Ronaldo","Kylian Mbappé","Usain Bolt",
+    "Serena Williams","Michael Jackson","Bob Marley","Beyoncé","Rihanna","Albert Einstein","Napoléon","Martin Luther King","La Joconde",
+    "Coupe du monde","Jeux olympiques","Internet","WhatsApp","TikTok","Smartphone","Avion","Fusée","Lune","Soleil","Mars","Arc-en-ciel",
+    "Pizza","Chocolat","Café","Ordinateur","Basket-ball","Tennis","Piano","Guitare","Dinosaure","Pingouin","Kangourou","Panda","Requin",
+    "Volcan","Pyjama","Parapluie","Anniversaire","Hôpital","École","Football"]
+};
+const CAT_LABEL = {tout:"🌍 Tout",guinee:"🇬🇳 Guinée",afrique:"🌍 Afrique",monde:"🌐 Monde"};
+const CAT_DESC = {tout:"Des mots sur la Guinée, l'Afrique et le monde, mélangés.",
+  guinee:"Uniquement des mots sur la Guinée : villes, artistes, plats, lieux…",
+  afrique:"Des mots sur toute l'Afrique : pays, villes, stars, animaux, plats…",
+  monde:"Des mots du monde entier : monuments, sportifs, objets, animaux…"};
+const TUTO = [
+  ["👥","Formez des équipes","Mettez-vous en 2, 3 ou 4 équipes. Chaque équipe joue à son tour."],
+  ["📱","Un joueur fait deviner","Quand c'est votre tour, une personne prend le téléphone. Les autres de son équipe ne regardent pas l'écran."],
+  ["🃏","Une carte = 5 mots","Le téléphone montre 5 mots. Le joueur doit les faire deviner à son équipe."],
+  ["🚫","Interdit de dire le mot !","On explique avec d'autres mots, des gestes ou des exemples. Exemple pour « Conakry » : « La capitale de la Guinée »."],
+  ["⏱️","Vite, le chrono tourne","Vous avez peu de temps (30 secondes au départ). Quand l'équipe trouve un mot, touchez-le : il devient vert ✓."],
+  ["🏆","Gagnez des points","1 mot trouvé = 1 point. Puis on passe à l'équipe suivante. La première équipe qui arrive au score final gagne !"]
+];
+let tStep=0, tThen=false;
+function openTuto(then){tStep=0;tThen=then;$('tuto').classList.add('on');showTuto();}
+function showTuto(){const t=TUTO[tStep];$('tIco').textContent=t[0];$('tTitle').textContent=t[1];$('tText').textContent=t[2];
+  $('tDots').innerHTML=TUTO.map((_,i)=>`<i class="${i===tStep?'on':''}"></i>`).join('');
+  $('tNext').textContent = tStep===TUTO.length-1 ? (tThen?"On joue ! ▶":"J'ai compris ✓") : "Suivant →";
+  $('tSkip').style.display = tStep===TUTO.length-1 ? 'none':'';}
+function nextTuto(){if(tStep<TUTO.length-1){tStep++;showTuto();}else closeTuto();}
+function closeTuto(){$('tuto').classList.remove('on');}
+const SHORT = {guinee:"Guinée",afrique:"Afrique",monde:"Monde"};
+const TEAM_COLORS = ["#ce1126","#fcd116","#009460","#4fb3ff"];
+const TEAM_NAMES = ["Les Lions","Les Éléphants","Les Panthères","Les Aigles"];
+
+const S = {nb:2, names:[...TEAM_NAMES], cat:"tout", dur:30, target:20, teams:[], cur:0, deck:[], card:[], found:[], timer:null, left:0, audio:null};
+
+/* ======== OUTILS ======== */
+const $ = id => document.getElementById(id);
+function go(id){document.querySelector('.help').style.display=(id==='play'||id==='result')?'none':'';document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));window.scrollTo(0,0);if(id==='setup')renderSetup();}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+function beep(f,d,type){
+  try{
+    if(!S.audio) S.audio = new (window.AudioContext||window.webkitAudioContext)();
+    const o=S.audio.createOscillator(), g=S.audio.createGain();
+    o.type=type||'sine'; o.frequency.value=f; o.connect(g); g.connect(S.audio.destination);
+    g.gain.setValueAtTime(.25,S.audio.currentTime); g.gain.exponentialRampToValueAtTime(.001,S.audio.currentTime+d);
+    o.start(); o.stop(S.audio.currentTime+d);
+  }catch(e){}
+}
+
+/* ======== RÉGLAGES ======== */
+function chips(el, opts, val, onPick){
+  el.innerHTML = opts.map(o=>`<button class="chip ${o.v===val?'on':''}" data-v="${o.v}">${o.t}</button>`).join('');
+  el.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{onPick(isNaN(b.dataset.v)?b.dataset.v:+b.dataset.v);renderSetup();});
+}
+function renderSetup(){
+  document.querySelectorAll('#teamInputs input').forEach((inp,i)=>S.names[i]=inp.value||TEAM_NAMES[i]);
+  chips($('nbTeams'),[2,3,4].map(n=>({v:n,t:n+" équipes"})),S.nb,v=>S.nb=v);
+  $('teamInputs').innerHTML = Array.from({length:S.nb},(_,i)=>
+    `<div class="teamin"><span style="background:${TEAM_COLORS[i]}"></span><input maxlength="18" value="${esc(S.names[i])}"></div>`).join('');
+  chips($('cats'),Object.keys(CAT_LABEL).map(k=>({v:k,t:CAT_LABEL[k]})),S.cat,v=>S.cat=v);
+  $('catDesc').textContent=CAT_DESC[S.cat];
+  chips($('durs'),[30,45,60].map(n=>({v:n,t:n+" s"})),S.dur,v=>S.dur=v);
+  chips($('targets'),[10,20,30].map(n=>({v:n,t:n+" points"})),S.target,v=>S.target=v);
+}
+
+/* ======== PARTIE ======== */
+function buildDeck(){
+  const keys = S.cat==='tout' ? Object.keys(POOLS) : [S.cat];
+  S.deck = shuffle(keys.flatMap(k=>POOLS[k].map(w=>({w,k}))));
+}
+function startGame(){
+  document.querySelectorAll('#teamInputs input').forEach((inp,i)=>S.names[i]=inp.value.trim()||TEAM_NAMES[i]);
+  S.teams = Array.from({length:S.nb},(_,i)=>({name:S.names[i],color:TEAM_COLORS[i],score:0}));
+  S.cur = 0; buildDeck(); showReady(); openTuto(true);
+}
+function scoresHTML(){
+  return S.teams.map((t,i)=>`<div class="srow ${i===S.cur?'cur':''}"><b>${esc(t.name)}</b><em>${t.score} / ${S.target}</em>
+    <div class="bar"><i style="width:${Math.min(100,t.score/S.target*100)}%;background:${t.color}"></i></div></div>`).join('');
+}
+function showReady(){
+  const t=S.teams[S.cur];
+  $('readyDur').textContent=S.dur; $('readyTeam').textContent=t.name; $('readyTeam').style.color=t.color;
+  $('scoresReady').innerHTML=scoresHTML(); go('ready');
+}
+function cardHTML(){
+  return S.card.map((c,i)=>`<button class="word ${S.found[i]?'ok':''}" data-i="${i}"><span class="n"><span>${i+1}</span></span>${esc(c.w)}<small>${SHORT[c.k]}</small></button>`).join('');
+}
+function bindCard(el){
+  el.innerHTML = cardHTML();
+  el.querySelectorAll('.word').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i; S.found[i]=!S.found[i];
+    if(S.found[i]) beep(880,.12,'triangle');
+    bindCard(el);
+    if(el.id==='resCard') updateRes();
+    if(el.id==='card' && S.found.every(Boolean)) setTimeout(endTurn,350);
+  });
+}
+function startTurn(){
+  beep(660,.15);
+  if(S.deck.length<5) buildDeck();
+  S.card = S.deck.splice(0,5); S.found=[false,false,false,false,false];
+  const t=S.teams[S.cur]; $('playTeam').textContent=t.name; $('playTeam').style.color=t.color;
+  bindCard($('card'));
+  S.left=S.dur; tick(); go('play');
+  clearInterval(S.timer); S.timer=setInterval(()=>{S.left--;tick();if(S.left<=0)endTurn();},1000);
+}
+function tick(){
+  $('timeNum').textContent=Math.max(0,S.left);
+  $('ring').style.strokeDashoffset = 232.5*(1-Math.max(0,S.left)/S.dur);
+  const hot=S.left<=5 && S.left>0;
+  $('timer').classList.toggle('hot',hot);
+  $('ring').style.stroke = hot ? '#ce1126' : '#f2c335';
+  if(hot) beep(520,.08,'square');
+}
+function endTurn(){
+  if(!$('play').classList.contains('on')) return;
+  clearInterval(S.timer); beep(220,.5,'sawtooth');
+  bindCard($('resCard')); updateRes(); go('result');
+}
+function updateRes(){
+  const n=S.found.filter(Boolean).length;
+  $('resNum').textContent='+'+n;
+  $('resTxt').textContent = n===5?'Parfait ! Les 5 mots trouvés 🔥': n===0?'Aucun mot… ça arrive !': n+' mot'+(n>1?'s':'')+' trouvé'+(n>1?'s':'');
+}
+function validate(){
+  const t=S.teams[S.cur]; t.score+=S.found.filter(Boolean).length;
+  if(t.score>=S.target){ showWin(t); return; }
+  S.cur=(S.cur+1)%S.teams.length; showReady();
+}
+function showWin(t){
+  $('winTeam').textContent=t.name; $('winTeam').style.color=t.color;
+  $('scoresWin').innerHTML=scoresHTML(); go('win'); confetti();
+  [523,659,784,1046].forEach((f,i)=>setTimeout(()=>beep(f,.25,'triangle'),i*150));
+}
+function confetti(){
+  const cols=['#ce1126','#fcd116','#009460','#f2c335'];
+  for(let i=0;i<60;i++){const d=document.createElement('div');d.className='confetti';
+    d.style.left=Math.random()*100+'vw';d.style.background=cols[i%4];d.style.animationDuration=(2+Math.random()*2)+'s';d.style.animationDelay=Math.random()*.6+'s';
+    document.body.appendChild(d);setTimeout(()=>d.remove(),5000);}
+}
+function quitGame(){clearInterval(S.timer);go('home');}
+</script>
+</body>
+</html>
