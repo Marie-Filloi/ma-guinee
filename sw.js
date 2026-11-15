@@ -1,4 +1,4 @@
-const CACHE_NAME = "maguinee-cache-v1";
+const CACHE_NAME = "maguinee-cache-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -9,6 +9,7 @@ const ASSETS = [
   "./manifest.json",
   "./icons/icon.png",
   "./icons/logo-full.jpg",
+  "./tongo-saxan/index.html",
 ];
 
 self.addEventListener("install", (event) => {
